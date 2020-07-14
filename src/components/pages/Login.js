@@ -25,9 +25,8 @@ class Login extends Component {
 
   handleLogin = (e) => {
     e.preventDefault()
-    var logout = document.getElementById('logout');
-    var login = document.getElementById('login');
-    var dashboard = document.getElementById('dashboard');
+
+    // construct Object to be send by axios to the API endpoint POST - /login
     const userObject = {
       email: this.state.email,
       password: this.state.password
@@ -39,9 +38,6 @@ class Login extends Component {
         email: '', 
         password: ''
       })
-      logout.classList.remove('hide');
-      login.classList.add('hide');
-      dashboard.classList.remove('hide');
     })
     .catch(err => {
       var errorBox = document.getElementById('error-box');

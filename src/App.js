@@ -11,37 +11,29 @@ class App extends Component {
     super(props);
 
     this.loginUpdateState = this.loginUpdateState.bind(this);
-    // var isLoggedin = JSON.parse(localStorage.getItem('isLoggedIn')) || false
 
     this.state = {
-      isLoggedIn: false
+      isLoggedIn: JSON.parse(localStorage.getItem('isLoggedIn')) || false
   };
 }
 
 
-  // componentWillMount () {
-    
-  // }
+  componentWillMount () {
+    this.setState({
+      isLoggedIn: JSON.parse(localStorage.getItem('isLoggedIn')) 
+    })
+  }
 
   handleLogout = () => {
-    var logout = document.getElementById('logout');
-    var login = document.getElementById('login');
-    var dashboard = document.getElementById('dashboard');
-
-    // localStorage.setItem( 'isLoggedIn', false );
+    localStorage.setItem( 'isLoggedIn', false );
 
     this.setState({
       isLoggedIn: false
     })
-   
-    logout.classList.add('hide');
-    login.classList.remove('hide');
-    dashboard.classList.add('hide');
-
   };
 
   loginUpdateState = () => {
-    // localStorage.setItem( 'isLoggedIn', true );
+    localStorage.setItem( 'isLoggedIn', true );
 
     this.setState({
       isLoggedIn: true
@@ -60,9 +52,9 @@ class App extends Component {
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
               <ul className="navbar-nav mr-auto">
                 <li><Link to={'/'} className="nav-link"> Home </Link></li>
-                <li><Link to={'/dashboard'} id="dashboard" className="nav-link hide">Dashboard</Link></li>
-                <li><Link to={'/login'} id="login" className="nav-link">Login</Link></li>
-                <li><Link to={'/'} id="logout" className="nav-link hide" onClick={this.handleLogout}>Log Out</Link></li>
+                {this.state.isLoggedIn ? <li><Link to={'/dashboard'} id="dashboard" className="nav-link">Dashboard</Link></li> : ''}
+                {!this.state.isLoggedIn ? <li><Link to={'/login'} id="login" className="nav-link">Login</Link></li> : ''}
+                {this.state.isLoggedIn ? <li><Link to={'/'} id="logout" className="nav-link" onClick={this.handleLogout}>Log Out</Link></li>  : ''}
               </ul>
             </nav>
             <Switch>
