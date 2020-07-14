@@ -1,0 +1,17 @@
+// colors
+$white: #fff;
+$red: #BC204B;
+$black: #333;
+$light-grey: #EDEFF0;
+$dark-grey: #707070;
+
+// fonts
+@font-face {
+  font-family: 'Apex';
+  src: local('Apex'), url(../assets/fonts/ApexNew-Book.otf) format('opentype');
+}
+
+//Typography
+$title-font-size: 42px;
+$subtitle-font-size: 32px;
+$paragraph-font-size: 18px;
